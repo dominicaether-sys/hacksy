@@ -80,9 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         fetch(file)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error(`File not found: ${file}`);
-                }
+                if (!response.ok) throw new Error(`File not found: ${file}`);
                 return response.text();
             })
             .then(text => {
@@ -94,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 mediumTopics.innerHTML = '';
                 lowTopics.innerHTML = '';
 
-                // Normalize subject keys to match file sections
+                // Map dropdown -> file headings
                 const subjectMap = {
                     pom: "Principles of Management",
                     ethics: "Business Ethics",
@@ -110,23 +108,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
-                // Extract only the chosen subject section
-                const subjectSection = text.split(/## /).find(section =>
-                    section.toLowerCase().includes(subjectName.toLowerCase())
-                );
+                // Extract chosen subject section only
+                const regex = new RegExp(`## ${subjectName}[\\s\\S]*?(?=##|$)`, "i");
+                const subjectSection = text.match(regex);
 
                 if (!subjectSection) {
                     terminalText.innerHTML += `<div>> ERROR: SUBJECT "${subjectName.toUpperCase()}" NOT FOUND IN ${file.toUpperCase()}</div>`;
                     return;
                 }
 
-                // Log file + subject in terminal
                 terminalText.innerHTML += `<div>> FILE LOADED: ${file.toUpperCase()} | SUBJECT: ${subjectName.toUpperCase()}</div>`;
 
                 // Parse High / Moderate / Low
-                const highMatch = subjectSection.match(/High Probability([\s\S]*?)Moderate Probability/);
-                const moderateMatch = subjectSection.match(/Moderate Probability([\s\S]*?)Low Probability/);
-                const lowMatch = subjectSection.match(/Low Probability([\s\S]*)/);
+                const highMatch = subjectSection[0].match(/High Probability([\s\S]*?)Moderate Probability/);
+                const moderateMatch = subjectSection[0].match(/Moderate Probability([\s\S]*?)Low Probability/);
+                const lowMatch = subjectSection[0].match(/Low Probability([\s\S]*)/);
 
                 if (highMatch) fillList(highTopics, highMatch[1]);
                 if (moderateMatch) fillList(mediumTopics, moderateMatch[1]);
@@ -150,4 +146,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
