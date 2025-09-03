@@ -63,12 +63,6 @@
             50% { opacity: 0; }
         }
        
-        @keyframes pulse {
-            0% { opacity: 0.6; }
-            50% { opacity: 1; }
-            100% { opacity: 0.6; }
-        }
-       
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -83,23 +77,12 @@
             overflow: hidden;
         }
        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
-            opacity: 0.3;
-        }
-       
         h1 {
             font-size: 3.5rem;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 5px;
-            text-shadow: 0 极 10px #00ff41;
+            text-shadow: 0 0 10px #00ff41;
             animation: glitch 5s infinite alternate;
             position: relative;
         }
@@ -108,7 +91,7 @@
             font-size: 1.2rem;
             color: #00ff9d;
             margin-top: 15px;
-            text-shadow: 0 0 5px #00极ff9d;
+            text-shadow: 0 0 5px #00ff9d;
         }
        
         .main-content {
@@ -117,14 +100,14 @@
        
         .selection-section {
             background: rgba(0, 20, 15, 0.5);
-            border: 1px solid #00ff41;
+            border: 1px solid #00极ff41;
             border-radius: 5px;
             padding: 25px;
             margin-bottom: 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 255, 65, 极0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
         }
        
         .selection-section::before {
@@ -166,7 +149,7 @@
             font-size: 1rem;
             cursor: pointer;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2300ff41' viewBox='0 0 16 16'%3E%3Cpath d='M8 12L2 6h12L8 12z'/%3极E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2300ff41' viewBox='0 0 16 极16'%3E%3Cpath d='M8 12L2 6h12L8 12z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 15px center;
             background-size: 16px;
@@ -240,11 +223,6 @@
             overflow: hidden;
         }
        
-        .mode.locked {
-            cursor: not-allowed;
-            opacity: 0.8;
-        }
-       
         .mode::before {
             content: '';
             position: absolute;
@@ -261,7 +239,7 @@
             opacity: 1;
         }
        
-        .mode:hover:not(.locked) {
+        .mode:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 20px rgba(0, 255, 65, 0.5);
         }
@@ -274,11 +252,9 @@
        
         .mode-1 { border-color: #ff2a6d; box-shadow: 0 0 10px rgba(255, 42, 109, 0.3); }
         .mode-2 { border-color: #05d9e8; box-shadow: 0 0 10px rgba(5, 217, 232, 0.3); }
-        .mode-3 { border-color: #00ff41; box-shadow: 0 0 10px rgba(0, 255, 65, 0.3); }
        
         .mode-1.selected { box-shadow: 0 0 20px rgba(255, 42, 109, 0.7); }
         .mode-2.selected { box-shadow: 0 0 20px rgba(5, 217, 232, 0.7); }
-        .mode-3.selected { box-shadow: 0 0 20px rgba(0, 255, 65, 0.7); }
        
         .mode-icon {
             font-size: 2.5rem;
@@ -286,8 +262,7 @@
         }
        
         .mode-1 .mode-icon { color: #ff2a6d; text-shadow: 0 0 10px rgba(255, 42, 109, 0.7); }
-        .mode-2 .mode-icon极 { color: #05d9e8; text-shadow: 0 0 10px rgba(5, 217, 232, 0.7); }
-        .mode-3 .mode-icon { color: #00ff41; text-shadow: 0 0 10px rgba(0, 255, 65, 0.7); }
+        .mode-2 .mode-icon { color: #05d9e8; text-shadow: 0 0 10px rgba(5, 217, 232, 0.7); }
        
         .mode-title {
             font-size: 1.5rem;
@@ -298,26 +273,13 @@
         }
        
         .mode-1 .mode-title { color: #ff2a6d; }
-        .mode-2 .mode-title { color极: #05极d9e8; }
-        .mode-3 .mode-title { color: #00ff41; }
+        .mode-2 .mode-title { color: #05d9e8; }
        
         .mode-desc {
             color: #cccccc;
             font-size: 0.95rem;
             line-height: 1.5;
             margin-bottom: 15px;
-        }
-       
-        .coming-soon {
-            display: inline-block;
-            background: linear-gradient(to right, #ff2a6极d, #ff5e8e);
-            color: #000;
-            padding: 5px 15px;
-            border-radius: 3px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            animation: pulse 2s infinite;
         }
        
         .predict-btn {
@@ -336,7 +298,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
-            text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 2px rgba(0, 0, 0, 极0.5);
         }
        
         .predict-btn:hover {
@@ -426,7 +388,7 @@
             transform: translateY(-5px);
         }
        
-       极 .card-header {
+        .card-header {
             padding: 18px 25px;
             color: #000;
             font-weight: bold;
@@ -494,46 +456,6 @@
             border-left: 3px solid #00ff41;
         }
        
-        .upgrade-section {
-            background: rgba(255, 42, 109, 0.1);
-            border: 1px solid #ff2a6d;
-            border-radius: 5px;
-            padding: 25px;
-            margin: 30px 0;
-            text-align: center;
-        }
-       
-        .upgrade-title {
-            font-size: 1.8rem;
-            color: #ff2a6d;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba极(255, 42, 109, 0.7);
-        }
-       
-        .upgrade-btn {
-            display: inline-block;
-            background: linear-gradient(to right, #ff2a6d, #ff5e8e);
-            color: #000;
-            padding: 15px 30px;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid #ff2a6d;
-            box-shadow: 0 0 15px rgba(255, 42, 109, 0.5);
-            margin-top: 15px;
-            text-decoration: none;
-        }
-       
-        .upgrade-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(255, 42, 109, 0.7);
-        }
-       
         footer {
             text-align: center;
             padding: 25px;
@@ -542,108 +464,6 @@
             margin-top: 30px;
             border-top: 1px solid #00ff41;
             text-shadow: 0 0 5px #00ff9d;
-        }
-       
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-       
-        .modal-content {
-            background: linear-gradient(to bottom, #0a0a12, #050510);
-            border: 2px solid #00ff41;
-            border-radius: 5px;
-            padding: 30px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
-            position: relative;
-        }
-       
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            color: #00ff41;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-       
-        .close-modal:hover {
-            color: #ff2a6d;
-            transform: rotate(90deg);
-        }
-       
-        .modal-title {
-            font-size: 1.8rem;
-            color: #00ff41;
-            margin-bottom: 20px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px #00ff41;
-        }
-       
-        .modal-input {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(0, 30, 20, 0.7);
-            border: 1px solid #00ff41;
-            border-radius极: 3px;
-            color: #00ff41;
-            font-size: 1rem;
-            margin-bottom: 20px;
-        }
-       
-        .modal-input:focus {
-            outline: none;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
-        }
-       
-        .modal-btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(to right, #003b1f, #极006b3a);
-            color: #000;
-            border: 2px solid #00ff41;
-            border-radius: 3px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-极           box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
-        }
-       
-        .modal-btn:hover {
-            background: linear-gradient(to right, #004d29, #008045);
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.7);
-        }
-       
-        .thank-you-message {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
-       
-        .thank-you-message i {
-            font-size: 3rem;
-            color: #00ff41;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px #00ff41;
         }
        
         @media (max-width: 768px) {
@@ -660,12 +480,8 @@
             }
            
             .checkbox-group {
-                grid-template-columns: 1极fr;
+                grid-template-columns: 1fr;
             }
-        }
-       
-        .glowing-text {
-            text-shadow: 0 0 10px currentColor;
         }
     </style>
 </head>
@@ -687,8 +503,8 @@
                     <select id="university-select" class="form-select">
                         <option value="">-- SELECT UNIVERSITY --</option>
                         <option value="calcutta" selected>University of Calcutta</option>
-                        <option value="delhi" disabled>University of Delhi (Coming Soon)</option>
-                        <option value="mumbai" disabled>University of Mumbai (Coming Soon)</option>
+                        <option value="delhi">University of Delhi</option>
+                        <option value="mumbai">University of Mumbai</option>
                     </select>
                 </div>
                
@@ -697,12 +513,12 @@
                     <select id="year-select" class="form-select">
                         <option value="">-- SELECT YEAR --</option>
                         <option value="1" selected>1st Year</option>
-                        <option value="2" disabled>2nd Year (Coming Soon)</option>
-                        <option value="3" disabled>3rd Year (Coming Soon)</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
                     </select>
                 </div>
                
-                <div class极="form-group">
+                <div class="form-group">
                     <label><i class="fas fa-book"></i> SELECT SUBJECTS (BBA 1ST YEAR)</label>
                     <div class="checkbox-group">
                         <div class="checkbox-item">
@@ -750,21 +566,8 @@
                 <div class="mode mode-2" data-mode="decent">
                     <i class="mode-icon fas fa-chart-line"></i>
                     <div class="mode-title">BE DECENT</div>
-                    <p class="mode-desc">SOLID UNDERSTANDING FOR 60-70 MARKS. BALANCED COVERAGE.</极p>
+                    <p class="mode-desc">SOLID UNDERSTANDING FOR 60-70 MARKS. BALANCED COVERAGE.</p>
                 </div>
-               
-                <div class="mode mode-3 locked" data-mode="dominate">
-                    <i class="mode-icon fas fa-trophy"></i>
-                    <div class="mode-title">DOMINATE</div>
-                    <p class="mode-desc">COMPLETE MASTERY FOR 85+ MARKS. FULL TOPIC COVERAGE.</p>
-                    <div class="coming-soon">COMING SOON</div>
-                </div>
-            </div>
-           
-            <div class="upgrade-section">
-                <h3 class="upgrade-title">UNLOCK THE FULL POTENTIAL</h3>
-                <p>DOMINATE mode is coming soon with advanced AI algorithms for 90%+ accuracy</p>
-                <a href="#" class="upgrade-btn" id="notify-btn"><i class="fas fa-unlock"></i> GET NOTIFIED AT LAUNCH</a>
             </div>
            
             <button class="predict-btn" id="predict-btn">
@@ -780,7 +583,7 @@
                     <h2 class="results-title">PREDICTION ANALYSIS COMPLETE</h2>
                     <p>BASED ON SYLLABUS ANALYSIS AND SELECTED MODE</p>
                     <div class="accuracy-badge">
-                        <i class="fas fa-shield-alt"></i> 89.7% PREDICTION ACCURACY
+                        <i class="fas fa-shield-alt"></极> 89.7% PREDICTION ACCURACY
                     </div>
                 </div>
                
@@ -807,7 +610,7 @@
                     </div>
                    
                     <div class="card medium">
-                        <极div class="card-header">
+                        <div class="card-header">
                             <span><i class="fas fa-info-circle"></i> MEDIUM PROBABILITY (60-89%)</span>
                             <span class="guarantee-badge">IMPORTANT</span>
                         </div>
@@ -835,36 +638,12 @@
                         </div>
                     </div>
                 </div>
-               
-                <div class="upgrade-section">
-                    <h3 class="upgrade-title">READY TO DOMINATE YOUR EXAMS?</h3>
-                    <p>Our advanced DOMINATE mode is coming soon with even higher accuracy predictions</p>
-                    <a href="#" class="upgrade-btn" id="waitlist-btn"><i class="fas fa-rocket"></i> JOIN WAITLIST FOR EARLY ACCESS</a>
-                </div>
             </div>
         </div>
        
         <footer>
             <p>HACKSY &copy; 2025 | ETHICAL EXAM PREDICTION SYSTEM | ACCURACY: 89.7%</p>
         </footer>
-    </div>
-
-    <!-- Email Modal -->
-    <div class="modal" id="email-modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-modal">&times;</span>
-            <div id="email-form">
-                <h3 class="modal-title">GET NOTIFIED AT LAUNCH</h3>
-                <p>Enter your email to be the first to know when new features are released</p>
-                <input type="email" class="modal-input" id="user-email" placeholder="Enter your email address">
-                <button class="modal-btn" id="submit-email">SUBMIT</button>
-            </div>
-            <div class="thank-you-message" id="thank-you-message">
-                <i class="fas fa-check-circle"></i>
-                <h3 class="modal-title">THANK YOU!</极3>
-                <p>Thank you for being a part of Hacksy. We'll notify you when new features are available.</p>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -878,14 +657,6 @@
             const progressBar = document.getElementById('progress-bar');
             const resultsSection = document.getElementById('results-section');
             const terminalText = document.querySelector('.terminal-text');
-            const notifyBtn = document.getElementById('notify-btn');
-            const waitlistBtn = document.getElementById('waitlist-btn');
-            const emailModal = document.getElementById('email-modal');
-            const closeModal = document.getElementById('close-modal');
-            const submitEmail = document.getElementById('submit-email');
-            const userEmail = document.getElementById('user-email');
-            const emailForm = document.getElementById('email-form');
-            const thankYouMessage = document.getElementById('thank-you-message');
            
             let selectedMode = null;
            
@@ -895,232 +666,65 @@
            
             // Mode selection event
             modes.forEach(mode => {
-                mode.addEventListener('click', function() {
-                    if (this.classList.contains('locked')) {
-                        // Show upgrade prompt for locked modes
-                        terminalText.innerHTML += '<div>> ALERT: DOMINATE MODE COMING SOON. USING BE DECENT MODE.</div>';
-                        document.querySelector('.upgrade-section').scrollIntoView({ behavior: 'smooth' });
-                       
-                        // Auto-select "Be Decent" mode instead
-                        document.querySelector('.mode-2').click();
-                        return;
-                    }
-                   
+                mode.addEventListener('click', function() {                    
+                    // Remove selected class from all modes
                     modes.forEach(m => m.classList.remove('selected'));
+                    
+                    // Add selected class to clicked mode
                     this.classList.add('selected');
-                    selectedMode = this.getAttribute('data-mode');
-                   
+                    
+                    // Update selected mode
+                    selectedMode = this.dataset.mode;
+                    
                     // Update terminal text
-                    terminalText.innerHTML += `<div>> MODE SELECTED: ${this.querySelector('.mode-title').textContent.toUpperCase()}</div>`;
+                    terminalText.innerHTML = `
+                        <div>> SYSTEM: ${universitySelect.options[universitySelect.selectedIndex].text.toUpperCase()} SELECTED</div>
+                        <div>> YEAR: ${yearSelect.options[yearSelect.selectedIndex].text.toUpperCase()}</div>
+                        <div>> MODE: ${this.querySelector('.mode-title').textContent.toUpperCase()} SELECTED</div>
+                    `;
+                    
+                    // Enable predict button if not already enabled
+                    predictBtn.disabled = false;
                 });
             });
-           
-            // Auto-select first mode
-            document.querySelector('.mode-1').click();
-           
+            
+            // Auto-select "Be Decent" mode by default
+            document.querySelector('.mode-2').click();
+            
             // Predict button event
             predictBtn.addEventListener('click', function() {
-                // Validate selections
-                const selectedSubjects = Array.from(subjectCheckboxes).filter(cb => cb.checked);
-               
-                if (selectedSubjects.length === 0) {
-                    terminalText.innerHTML += '<div>> ERROR: NO SUBJECTS SELECTED</div>';
-                    return;
-                }
-               
-                if (!selectedMode) {
-                    terminalText.innerHTML += '<div>> ERROR: NO PREDICTION MODE SELECTED</div>';
-                    return;
-                }
-               
-                // Simulate processing
-                predictBtn.innerHTML = '<i class="fas fa-cog fa-spin"></i> ANALYZING...';
-                predictBtn.disabled = true;
+                // Show progress container
                 progressContainer.style.display = 'block';
-               
-                // Update terminal text
-                terminalText.innerHTML = `
-                    <div>> SYSTEM: INITIATING PREDICTION SEQUENCE</div>
-                    <div>> ANALYZER: PROCESSING BBA PROGRAM DATA</div>
-                    <div>> PREDICTION ENGINE: RUNNING AI MODELS</div>
-                    <div>> STATUS: ESTIMATED TIME 5 SECONDS</div>
-                `;
-               
+                
+                // Disable predict button during analysis
+                predictBtn.disabled = true;
+                
                 // Simulate progress
-                let width = 0;
+                let progress = 0;
                 const interval = setInterval(() => {
-                    if (width >= 100) {
+                    progress += Math.random() * 10;
+                    if (progress >= 100) {
+                        progress = 100;
                         clearInterval(interval);
-                       
-                        // Generate prediction
-                        generatePrediction(selectedMode);
-                        resultsSection.style.display = 'block';
-                        predictBtn.innerHTML = '<i class="fas fa-brain"></i> INITIATE PREDICTION ANALYSIS';
-                        predictBtn.disabled = false;
-                       
-                        // Update terminal text
-                        terminalText.innerHTML += '<div>> PREDICTION: ANALYSIS COMPLETE - 89.7% ACCURACY</div>';
-                       
-                        // Scroll to results
-                        resultsSection.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                        width += 5;
-                        progressBar.style.width = width + '%';
+                        
+                        // Show results after progress completes
+                        setTimeout(() => {
+                            resultsSection.style.display = 'block';
+                            resultsSection.scrollIntoView({ behavior: 'smooth' });
+                        }, 500);
                     }
-                }, 100);
-            });
-           
-            // Generate sample prediction based on mode
-            function generatePrediction(mode) {
-                // In a real app, this would be based on actual analysis
-                // For the prototype, we'll use sample data
-               
-                const highTopics = document.getElementById('high-topics');
-                const mediumTopics = document.getElementById('medium-topics');
-                const lowTopics = document.getElementById('low-topics');
-               
-                // Clear previous results
-                highTopics.innerHTML = '';
-                mediumTopics.innerHTML = '';
-                lowTopics.innerHTML = '';
-               
-                // Sample data for different modes
-                const topics = {
-                    'just-pass': {
-                        high: [
-                            'Forms of Business Ownership (Sole, Partnership, Company)',
-                            'Managerial Functions (Fayol\'s 5 functions)',
-                            'Planning - Meaning, Process, Types of Plans',
-                            'Control - Meaning, Process of Control, Types',
-                            'Maslow\'s Hierarchy of Needs',
-                            'Transactional vs Transformational Leadership'
-                        ],
-                        medium: [
-                            'Special Forms of Ownership (Franchising, Licensing, Leasing)',
-                            'Managerial Roles (Mintzberg\'s 10 roles)',
-                            'Herzberg\'s Two-Factor Theory'
-                        ],
-                        low: [
-                            'Choosing the Right Form of Ownership',
-                            'Corporate Expansion (Mergers, Joint Ventures)',
-                            'Evolution of Management Thought',
-                            'Decision Making Process',
-                            'Organizational Structures',
-                            'Delegation vs Decentralization',
-                            'Communication Process and Barriers',
-                            'Functional Areas of Management',
-                            'Teams vs Groups',
-                            'Perception & Attribution',
-                            'Personality - Trait Theory',
-                            'Learning - Concept and Types',
-                            'McClelland\'s Needs Theory',
-                            'Expectancy Theory (Vroom)',
-                            'Trait and Behavioral Leadership Theories',
-                            'Managerial Grid - Blake & Mouton'
-                        ]
-                    },
-                    'decent': {
-                        high: [
-                            'Forms of Business Ownership (features, pros/cons, suitability)',
-                            'Special Forms of Ownership (with comparisons)',
-                            'Managerial Functions (Fayol\'s 5 functions)',
-                            'Managerial Roles (Mintzberg\'s 10 roles)',
-                            'Planning - Importance, Process, Types of Plans',
-                            'Control - Meaning, Process of Control, Types',
-                            'Maslow\'s Hierarchy of Needs',
-                            'Herzberg\'s Two-Factor Theory',
-                            'Transactional vs Transformational Leadership'
-                        ],
-                        medium: [
-                            'Choosing the Right Form of Ownership',
-                            'Corporate Expansion (Mergers, Joint Ventures, Strategic Alliances)',
-                            'Evolution of Management Thought (Taylor, Fayol, Mayo)',
-                            'Decision Making - Process, Types',
-                            'Organizational Structures (Line, Functional, Matrix)',
-                            'Delegation vs Decentralization',
-                            'Communication - Process, Types, Barriers',
-                            'McClelland\'s Needs Theory',
-                            'Expectancy Theory (Vroom)',
-                            'Trait and Behavioral Leadership Theories'
-                        ],
-                        low: [
-                            'Functional Areas of Management (HR, Finance, Marketing, Operations)',
-                            'Teams vs Groups - Differences, Characteristics',
-                            'Importance of Organizational Behavior',
-                            'Perception & Attribution - Concept, Nature, Process',
-                            'Personality - Trait Theory (Big Five)',
-                            'Learning - Classical & Operant Conditioning',
-                            'Charismatic Leadership',
-                            'Managerial Grid - Blake & Mouton'
-                        ]
-                    }
-                };
-               
-                // Populate topics based on selected mode
-                topics[mode].high.forEach(topic => {
-                    const li = document.createElement('li');
-                    li.className = 'topic-item';
-                    li.textContent = topic.toUpperCase();
-                    highTopics.appendChild(li);
-                });
-               
-                topics[mode].medium.forEach(topic => {
-                    const li = document.createElement('li');
-                    li.className = 'topic-item';
-                    li.textContent = topic.toUpperCase();
-                    mediumTopics.appendChild(li);
-                });
-               
-                topics[mode].low.forEach(topic => {
-                    const li = document.createElement('li');
-                    li.className = 'topic-item';
-                    li.textContent = topic.toUpperCase();
-                    lowTopics.appendChild(li);
-                });
-            }
-           
-            // Email notification functionality
-            notifyBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                emailModal.style.display = 'flex';
-                emailForm.style.display = 'block';
-                thankYouMessage.style.display = 'none';
-            });
-           
-            waitlistBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                emailModal.style.display = 'flex';
-                emailForm.style.display = 'block';
-                thankYouMessage.style.display = 'none';
-            });
-           
-            closeModal.addEventListener('click', function() {
-                emailModal.style.display = 'none';
-            });
-           
-            submitEmail.addEventListener极('click', function() {
-                const email = userEmail.value.trim();
-               
-                if (email && isValidEmail(email)) {
-                    // In a real app, you would send this to a server
-                    emailForm.style.display = 'none';
-                    thankYouMessage.style.display = 'block';
-                    userEmail.value = '';
-                } else {
-                    alert('Please enter a valid email address');
-                }
-            });
-           
-            function isValidEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(email);
-            }
-           
-            // Close modal when clicking outside
-            window.addEventListener('click', function(e) {
-                if (e.target === emailModal) {
-                    emailModal.style.display = 'none';
-                }
+                    
+                    // Update progress bar
+                    progressBar.style.width = progress + '%';
+                }, 200);
+                
+                // Update terminal text during analysis
+                terminalText.innerHTML = `
+                    <div>> ANALYZING: ${universitySelect.options[universitySelect.selectedIndex].text.toUpperCase()} BBA PROGRAM</div>
+                    <div>> PROCESSING: ${document.querySelectorAll('input[name="subjects"]:checked').length} SUBJECTS SELECTED</div>
+                    <div>> MODE: ${selectedMode ? selectedMode.toUpperCase().replace('-', ' ') : 'NONE'}</div>
+                    <div>> STATUS: ANALYZING PAST PAPERS AND SYLLABUS PATTERNS...</div>
+                `;
             });
         });
     </script>
