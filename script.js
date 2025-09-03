@@ -3,12 +3,15 @@ document.addEventListener('DOMContentLoaded',
     const disclaimerModal = document.getElementById('disclaimer-modal');
     const acceptDisclaimerBtn = document.getElementById('accept-disclaimer');
 
-    // Show disclaimer on load
-    disclaimerModal.style.display = "flex";
+    // Show disclaimer only if not accepted before
+    if (!localStorage.getItem('disclaimerAccepted')) {
+        disclaimerModal.style.display = "flex";
+    }
 
     // Hide when accepted
     acceptDisclaimerBtn.addEventListener('click', () => {
         disclaimerModal.style.display = "none";
+        localStorage.setItem('disclaimerAccepted', 'true');
     });
 
 function() {
