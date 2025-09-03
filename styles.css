@@ -458,7 +458,7 @@ footer {
 }
 /* Disclaimer Modal */
 .modal {
-    display: flex;
+    display: none; /* hidden by default */
     align-items: center;
     justify-content: center;
     position: fixed;
