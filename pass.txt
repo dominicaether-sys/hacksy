@@ -1,0 +1,189 @@
+1. Principles of Management & Organizational Behavior (POM/OB)
+
+High Probability
+
+Fayol’s 14 Principles of Management
+
+Functions of Management: Planning, Organizing, Leading, Controlling
+
+Maslow’s Hierarchy of Needs
+
+Transactional vs Transformational Leadership
+
+Moderate Probability
+
+Herzberg’s Two-Factor Theory
+
+Decision-making process basics
+
+Organizational Structures: Line, Functional, Matrix
+
+Low Probability
+
+Mintzberg’s Managerial Roles
+
+Delegation vs Decentralization
+
+Advanced leadership theories (Trait, Behavioral, Managerial Grid)
+
+2. Business Communication
+
+High Probability
+
+Objectives & Process of Communication
+
+Barriers to Communication + Remedies
+
+Business Letters: Offer, Quotation, Confirmation, Refusal, Cancellation
+
+Report Writing (essentials only)
+
+Meetings: Notice, Agenda, Resolution, Minutes
+
+CV Writing basics
+
+Moderate Probability
+
+Channels of Communication (Formal vs Informal, Grapevine)
+
+Modern Forms: Email, Fax, Video Conferencing
+
+Oral vs Written communication differences
+
+Low Probability
+
+Characteristics of Corporate Communication
+
+Communication Networks
+
+Advanced Presentation or Cross-cultural Communication
+
+3. Business Ethics
+
+High Probability
+
+Meaning of Ethics, Why ethical problems occur in business
+
+Teleological vs Deontological Theories
+
+Profit Maximization vs Social Responsibility
+
+CSR: Meaning & Evolution
+
+Corporate Governance: Concept & Need
+
+SEBI Clause 49
+
+Role & Duties of Auditors
+
+Whistleblowing: Meaning & Kinds
+
+Moderate Probability
+
+Role & Composition of Board (Independent & Outside Directors)
+
+CEO Duality
+
+Precluding the need for whistleblowing
+
+Low Probability
+
+Virtue Ethics, Ethics of Care (philosophical detail)
+
+Over-detailed governance issues
+
+4. Financial Institutions & Markets (FIM)
+
+High Probability
+
+Role & Importance of Financial Markets
+
+Money Market vs Capital Market
+
+Primary vs Secondary Market
+
+Primary Market Methods: Public Issue, Rights Issue, Private Placement, Book Building, Online IPO
+
+Listing & Delisting of Stocks
+
+NSE vs BSE Comparison
+
+ADRs & GDRs
+
+Indian Stock Indices + Corporate Action Adjustments (Rights, Bonus, Split)
+
+Bulls & Bears in Stock Market
+
+DEMAT System
+
+Equity Shares & Debentures
+
+Contract Note & Settlement at NSE/BSE
+
+Moderate Probability
+
+Currency Market – Role
+
+Debt Market – Role & Functions
+
+Disinvestment of PSU
+
+Factors Influencing Stock Market Movement
+
+Opening Account & Placing Orders
+
+Low Probability
+
+Detailed Stock Index Methodology Numericals
+
+FCCB & Euro Issues (only definitions if time)
+
+5. IT in Business
+
+High Probability
+
+Data vs Information, Computer-based Information System
+
+Impact of IT on Business (Data Processing, BPO, KPO, Networks)
+
+Types of IS: TPS, MIS (Basics only)
+
+DBMS: Definition & Importance
+
+Keys: Primary, Foreign, Candidate
+
+Data Warehouse & Data Mining: Meaning & Importance
+
+Internet Basics: IP (v4 vs v6), URL, DNS
+
+Security Threats: Virus, Worm, Trojan, Spyware, Ransomware, Phishing, Spamming, DoS
+
+Encryption: Symmetric vs Asymmetric
+
+IT Act 2000: Definitions, Digital Signatures, Cyber Crimes & Penalties
+
+Moderate Probability
+
+Types of Data Processing Systems (Batch, Real-time, Online, Centralized, Distributed)
+
+File Organization: Traditional vs Database
+
+Relational Database Basics
+
+TCP/IP Basics
+
+Cloud Computing & IoT Concepts
+
+Firewall & HTTPS Basics
+
+Duties of Subscribers (IT Act)
+
+Low Probability
+
+File Organizations: Sequential, Indexed, Relative
+
+Protocols: UDP, FTP, TELNET
+
+DMZ, SSL, Website Auditing
+
+Big Data Analysis – only definition

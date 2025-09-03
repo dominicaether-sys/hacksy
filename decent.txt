@@ -1,0 +1,207 @@
+1. Principles of Management & Organizational Behavior (POM/OB)
+
+High Probability
+
+Fayol’s 14 Principles of Management
+
+Functions of Management: Planning, Organizing, Leading, Controlling
+
+Managerial Roles (Mintzberg’s 10 roles)
+
+Maslow’s Hierarchy of Needs
+
+Herzberg’s Two-Factor Theory
+
+Transactional vs Transformational Leadership
+
+Organizational Structures: Line, Functional, Matrix
+
+Delegation vs Decentralization
+
+Moderate Probability
+
+Evolution of Management Thought (Taylor, Fayol, Mayo)
+
+Decision-making Process
+
+McClelland’s Needs Theory
+
+Vroom’s Expectancy Theory
+
+Perception & Attribution in OB
+
+Learning Theories: Classical & Operant Conditioning
+
+Low Probability
+
+Advanced Leadership Theories (Trait, Behavioral, Managerial Grid)
+
+Contemporary OB concepts (Team dynamics, Motivation beyond basics)
+
+2. Business Communication
+
+High Probability
+
+Objectives & Process of Communication
+
+Barriers to Communication + Remedies
+
+Business Letters: Offer, Quotation, Confirmation, Refusal, Cancellation
+
+Report Writing (formal & informal)
+
+Meetings: Notice, Agenda, Resolution, Minutes
+
+CV Writing
+
+Presentation Basics (structure & delivery)
+
+Moderate Probability
+
+Channels of Communication (Formal, Informal, Grapevine)
+
+Modern Forms: Email, Fax, Video Conferencing
+
+Oral vs Written Communication
+
+Group Discussions (Job Interview Context)
+
+Listening Skills & Feedback
+
+Low Probability
+
+Corporate Communication: Features, Networks
+
+Cross-cultural Communication
+
+Crisis & Negotiation Communication
+
+3. Business Ethics
+
+High Probability
+
+Meaning of Ethics, Why Ethical Problems Occur in Business
+
+Ethical Frameworks: Teleological vs Deontological, Virtue Ethics, Ethics of Care
+
+Profit Maximization vs Social Responsibility
+
+CSR: Meaning, Evolution & Indicators
+
+Corporate Governance: Concept, Need, Features
+
+SEBI Clause 49
+
+Role & Duties of Auditors
+
+Whistleblowing: Meaning, Kinds, Policies
+
+Moderate Probability
+
+Integrating Utility, Rights, Justice & Caring
+
+Role & Composition of Board (Independent, Nominee, Non-executive Directors)
+
+CEO Duality
+
+Precluding the Need for Whistleblowing
+
+Low Probability
+
+Highly philosophical theories in ethics (deep analysis)
+
+Detailed case studies in ethics & governance
+
+4. Financial Institutions & Markets (FIM)
+
+High Probability
+
+Role & Importance of Financial Markets
+
+Money Market vs Capital Market
+
+Primary vs Secondary Market
+
+Primary Market Methods: Public Issue, Rights Issue, Private Placement, Book Building, Online IPO, Green Shoe Option
+
+Listing & Delisting of Stocks
+
+NSE vs BSE Comparison
+
+ADRs, GDRs, FCCBs, Euro Issues (basics)
+
+Indian Stock Indices + Adjustments (Rights, Bonus, Split)
+
+Bulls & Bears
+
+DEMAT System
+
+Equity Shares & Debentures
+
+Contract Note & Settlement at NSE/BSE
+
+Factors Influencing Stock Market Movement
+
+Moderate Probability
+
+Currency Market – Role
+
+Debt Market – Role & Functions
+
+Disinvestment of PSU
+
+Raising Funds in International Markets
+
+Classification of Securities in Indices
+
+Low Probability
+
+Detailed numerical on stock indices methodology
+
+Deep international financing mechanisms
+
+5. IT in Business
+
+High Probability
+
+Data vs Information, Computer-based Information System
+
+Impact of IT on Business (Data Processing, BPO, KPO, Networks)
+
+Types of IS: TPS, MIS, DSS, KMS (with managerial levels)
+
+DBMS: Definition, Importance, Tables, Views, Keys (Primary, Foreign, Candidate)
+
+Data Warehouse & Data Mining (definition, importance, advantages & disadvantages)
+
+Internet Basics: IP (v4 vs v6), URL, DNS, TCP/IP, HTML, XML (concepts only)
+
+Security Threats: Virus, Worm, Trojan, Spyware, Ransomware, Phishing, Spamming, DoS
+
+Encryption: Symmetric vs Asymmetric
+
+Firewall, HTTPS, SSL basics
+
+IT Act 2000: Definitions, Digital Signatures, E-Governance, Cyber Crimes, Penalties
+
+Moderate Probability
+
+Types of Data Processing Systems (Batch, Real-time, Online, Centralized, Distributed)
+
+File Organization: Traditional vs Database
+
+Relational Database basics
+
+Cloud Computing, Mobile Computing, IoT Concepts
+
+Duties of Subscribers (IT Act)
+
+Low Probability
+
+File Organizations: Sequential, Indexed, Relative
+
+Protocols: UDP, FTP, TELNET
+
+DMZ, Website Auditing
+
+Big Data & Advanced Analytics
