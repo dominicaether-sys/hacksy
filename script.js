@@ -1,4 +1,17 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', 
+    // Disclaimer popup
+    const disclaimerModal = document.getElementById('disclaimer-modal');
+    const acceptDisclaimerBtn = document.getElementById('accept-disclaimer');
+
+    // Show disclaimer on load
+    disclaimerModal.style.display = "flex";
+
+    // Hide when accepted
+    acceptDisclaimerBtn.addEventListener('click', () => {
+        disclaimerModal.style.display = "none";
+    });
+
+function() {
     const universitySelect = document.getElementById('university-select');
     const streamSelect = document.getElementById('stream-select');
     const yearSelect = document.getElementById('year-select');
