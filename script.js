@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressContainer = document.querySelector('.progress-container');
     const progressBar = document.getElementById('progress-bar');
     const resultsSection = document.getElementById('results-section');
-    const terminalText = document.querySelector('.terminal-text');
+    const analysisLog = document.getElementById('analysis-log');
 
     let selectedMode = null;
 
@@ -18,6 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
     yearSelect.value = '1';
     subjectSelect.value = 'pom';
 
+    // Logging helper
+    function log(message) {
+        const div = document.createElement('div');
+        div.textContent = `> ${message}`;
+        analysisLog.appendChild(div);
+        analysisLog.scrollTop = analysisLog.scrollHeight;
+    }
+
     // Mode selection
     modes.forEach(mode => {
         mode.addEventListener('click', function() {
@@ -25,13 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('selected');
             selectedMode = this.dataset.mode;
 
-            terminalText.innerHTML = `
-                <div>> SYSTEM: ${universitySelect.options[universitySelect.selectedIndex].text.toUpperCase()} SELECTED</div>
-                <div>> STREAM: ${streamSelect.options[streamSelect.selectedIndex].text.toUpperCase()}</div>
-                <div>> YEAR: ${yearSelect.options[yearSelect.selectedIndex].text.toUpperCase()}</div>
-                <div>> SUBJECT: ${subjectSelect.options[subjectSelect.selectedIndex].text.toUpperCase()}</div>
-                <div>> MODE: ${this.querySelector('.mode-title').textContent.toUpperCase()} SELECTED</div>
-            `;
+            analysisLog.innerHTML = ""; // reset log on new mode
+            log(`SYSTEM: ${universitySelect.options[universitySelect.selectedIndex].text.toUpperCase()} SELECTED`);
+            log(`STREAM: ${streamSelect.options[streamSelect.selectedIndex].text.toUpperCase()}`);
+            log(`YEAR: ${yearSelect.options[yearSelect.selectedIndex].text.toUpperCase()}`);
+            log(`SUBJECT: ${subjectSelect.options[subjectSelect.selectedIndex].text.toUpperCase()}`);
+            log(`MODE: ${this.querySelector('.mode-title').textContent.toUpperCase()} SELECTED`);
+
             predictBtn.disabled = false;
         });
     });
@@ -48,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         progressContainer.style.display = 'block';
         predictBtn.disabled = true;
+        resultsSection.style.display = 'none';
 
         let progress = 0;
         const interval = setInterval(() => {
@@ -66,12 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
             progressBar.style.width = progress + '%';
         }, 200);
 
-        terminalText.innerHTML = `
-            <div>> ANALYZING: ${universitySelect.options[universitySelect.selectedIndex].text.toUpperCase()} ${streamSelect.options[streamSelect.selectedIndex].text.toUpperCase()}</div>
-            <div>> SUBJECT: ${subjectSelect.options[subjectSelect.selectedIndex].text.toUpperCase()}</div>
-            <div>> MODE: ${selectedMode.toUpperCase()}</div>
-            <div>> STATUS: FETCHING TOPICS FROM FILE...</div>
-        `;
+        analysisLog.innerHTML = "";
+        log(`ANALYZING: ${universitySelect.options[universitySelect.selectedIndex].text.toUpperCase()} ${streamSelect.options[streamSelect.selectedIndex].text.toUpperCase()}`);
+        log(`SUBJECT: ${subjectSelect.options[subjectSelect.selectedIndex].text.toUpperCase()}`);
+        log(`MODE: ${selectedMode.toUpperCase()}`);
+        log("STATUS: FETCHING TOPICS FROM FILE...");
     });
 
     // Load prediction topics
@@ -79,10 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const file = mode === 'just-pass' ? 'pass.txt' : 'decent.txt';
 
         fetch(file)
-            .then(response => {
-                if (!response.ok) throw new Error(`File not found: ${file}`);
-                return response.text();
-            })
+            .then(response => response.text())
             .then(text => {
                 const highTopics = document.getElementById('high-topics');
                 const mediumTopics = document.getElementById('medium-topics');
@@ -92,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 mediumTopics.innerHTML = '';
                 lowTopics.innerHTML = '';
 
-                // Map dropdown -> file headings
+                // Map subject dropdown values to text file headings
                 const subjectMap = {
                     pom: "Principles of Management & Organizational Behavior",
                     ethics: "Business Ethics",
@@ -103,34 +108,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 const subjectName = subjectMap[subjectValue];
-                if (!subjectName) {
-                    terminalText.innerHTML += `<div>> ERROR: SUBJECT NOT MAPPED</div>`;
-                    return;
-                }
 
-                // Regex: find section starting with "n. SUBJECT" until next "n."
-                const regex = new RegExp(`\\d+\\. ${subjectName}[\\s\\S]*?(?=\\d+\\. |$)`, "i");
+                // Extract subject section
+                const regex = new RegExp(`\\d+\\.\\s*${subjectName}[\\s\\S]*?(?=\\n\\d+\\.|$)`, "i");
                 const subjectSection = text.match(regex);
 
                 if (!subjectSection) {
-                    terminalText.innerHTML += `<div>> ERROR: SUBJECT "${subjectName.toUpperCase()}" NOT FOUND IN ${file.toUpperCase()}</div>`;
+                    log(`ERROR: SUBJECT "${subjectName}" NOT FOUND IN ${file.toUpperCase()}`);
                     return;
                 }
 
-                terminalText.innerHTML += `<div>> FILE LOADED: ${file.toUpperCase()} | SUBJECT: ${subjectName.toUpperCase()}</div>`;
+                log(`FILE LOADED: ${file.toUpperCase()}`);
+                log(`SUBJECT SECTION FOUND: ${subjectName.toUpperCase()}`);
+                log("STATUS: PARSING TOPICS...");
 
                 // Parse High / Moderate / Low
-                const highMatch = subjectSection[0].match(/High Probability([\s\S]*?)Moderate Probability/);
-                const moderateMatch = subjectSection[0].match(/Moderate Probability([\s\S]*?)Low Probability/);
-                const lowMatch = subjectSection[0].match(/Low Probability([\s\S]*)/);
+                const sectionText = subjectSection[0];
+                const highMatch = sectionText.match(/High Probability([\s\S]*?)(Moderate Probability|Low Probability|$)/i);
+                const moderateMatch = sectionText.match(/Moderate Probability([\s\S]*?)(Low Probability|$)/i);
+                const lowMatch = sectionText.match(/Low Probability([\s\S]*)/i);
 
                 if (highMatch) fillList(highTopics, highMatch[1]);
                 if (moderateMatch) fillList(mediumTopics, moderateMatch[1]);
                 if (lowMatch) fillList(lowTopics, lowMatch[1]);
+
+                log("STATUS: TOPICS LOADED SUCCESSFULLY ✅");
             })
             .catch(err => {
-                terminalText.innerHTML += `<div>> ERROR: ${err.message}</div>`;
-                console.error(err);
+                log(`ERROR LOADING FILE: ${err.message}`);
             });
     }
 
@@ -140,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (line.trim()) {
                 const li = document.createElement('li');
                 li.className = 'topic-item';
-                li.textContent = line.replace(/^- /, '').toUpperCase();
+                li.textContent = line.replace(/^- /, '').trim();
                 listElement.appendChild(li);
             }
         });
