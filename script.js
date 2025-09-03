@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Map dropdown -> file headings
                 const subjectMap = {
-                    pom: "Principles of Management",
+                    pom: "Principles of Management & Organizational Behavior",
                     ethics: "Business Ethics",
                     finance: "Financial Institutions & Markets",
                     communication: "Business Communication",
@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
-                // Extract chosen subject section only
-                const regex = new RegExp(`## ${subjectName}[\\s\\S]*?(?=##|$)`, "i");
+                // Regex: find section starting with "n. SUBJECT" until next "n."
+                const regex = new RegExp(`\\d+\\. ${subjectName}[\\s\\S]*?(?=\\d+\\. |$)`, "i");
                 const subjectSection = text.match(regex);
 
                 if (!subjectSection) {
