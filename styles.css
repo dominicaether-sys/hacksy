@@ -456,7 +456,10 @@ footer {
         font-size: 2.5rem;
     }
 }
-/* Disclaimer Modal */
+
+/* ========================= */
+/* Disclaimer Modal Styling  */
+/* ========================= */
 .modal {
     display: none; /* hidden by default */
     align-items: center;
@@ -480,7 +483,7 @@ footer {
     text-align: center;
     color: #00ff41;
     box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
-    animation: fadeIn 0.5s ease;
+    animation: fadeScaleIn 0.4s ease-out;
 }
 
 .modal-content h2 {
@@ -512,4 +515,25 @@ footer {
 #accept-disclaimer:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(0, 255, 65, 0.8);
+}
+
+/* Animations for disclaimer */
+@keyframes fadeScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.4s ease forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
 }
