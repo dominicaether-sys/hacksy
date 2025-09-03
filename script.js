@@ -1,20 +1,24 @@
-document.addEventListener('DOMContentLoaded', 
+document.addEventListener('DOMContentLoaded', function() {
+    // ============================
     // Disclaimer popup
+    // ============================
     const disclaimerModal = document.getElementById('disclaimer-modal');
     const acceptDisclaimerBtn = document.getElementById('accept-disclaimer');
 
-    // Show disclaimer only if not accepted before
-    if (!localStorage.getItem('disclaimerAccepted')) {
-        disclaimerModal.style.display = "flex";
-    }
+    // Always show disclaimer every time
+    disclaimerModal.style.display = "flex";
 
-    // Hide when accepted
+    // Hide when accepted (with fade-out)
     acceptDisclaimerBtn.addEventListener('click', () => {
-        disclaimerModal.style.display = "none";
-        localStorage.setItem('disclaimerAccepted', 'true');
+        disclaimerModal.classList.add('fade-out');
+        setTimeout(() => {
+            disclaimerModal.style.display = "none";
+        }, 400); // match CSS animation duration
     });
 
-function() {
+    // ============================
+    // Main App Logic
+    // ============================
     const universitySelect = document.getElementById('university-select');
     const streamSelect = document.getElementById('stream-select');
     const yearSelect = document.getElementById('year-select');
