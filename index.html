@@ -1,169 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacksy - Exam Predictor Pro</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacksy - Exam Predictor Pro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>HACKSY</h1>
-            <p class="tagline">CRACK THE EXAM CODE - PREDICT. STUDY. DOMINATE.</p>
-        </header>
-       
-        <div class="main-content">
-            <div class="selection-section">
-                <i class="selection-icon fas fa-graduation-cap"></i>
-                <h3>SELECT YOUR STREAM</h3>
-                <p>CHOOSE YOUR UNIVERSITY AND SUBJECT</p>
-               
-                <div class="form-group">
-                    <label for="university-select"><i class="fas fa-university"></i> SELECT UNIVERSITY</label>
-                    <select id="university-select" class="form-select">
-                        <option value="">-- SELECT UNIVERSITY --</option>
-                        <option value="calcutta" selected>University of Calcutta</option>
-                        <option value="delhi">University of Delhi</option>
-                        <option value="mumbai">University of Mumbai</option>
-                    </select>
-                </div>
-               
-                <div class="form-group">
-                    <label for="stream-select"><i class="fas fa-graduation-cap"></i> SELECT STREAM</label>
-                    <select id="stream-select" class="form-select">
-                        <option value="">-- SELECT STREAM --</option>
-                        <option value="bba" selected>BBA (Bachelor of Business Administration)</option>
-                        <option value="bcom">B.Com (Bachelor of Commerce)</option>
-                        <option value="bsc">B.Sc (Bachelor of Science)</option>
-                        <option value="ba">B.A (Bachelor of Arts)</option>
-                    </select>
-                </div>
-               
-                <div class="form-group">
-                    <label for="year-select"><i class="fas fa-calendar-alt"></i> SELECT YEAR</label>
-                    <select id="year-select" class="form-select">
-                        <option value="">-- SELECT YEAR --</option>
-                        <option value="1" selected>1st Year</option>
-                        <option value="2">2nd Year</option>
-                        <option value="3">3rd Year</option>
-                    </select>
-                </div>
-               
-                <div class="form-group">
-                    <label for="subject-select"><i class="fas fa-book"></i> SELECT SUBJECT</label>
-                    <div class="subject-select-wrapper">
-                        <select id="subject-select" class="form-select">
-                            <option value="">-- SELECT SUBJECT --</option>
-                            <option value="pom">Principles of Management and Organizational Behavior</option>
-                            <option value="ethics">Business Ethics</option>
-                            <option value="finance">Financial Institutions and Markets</option>
-                            <option value="communication">Business Communication</option>
-                            <option value="it">IT in Business</option>
-                            <option value="constitution">Constitutional Values and Fundamental Duties</option>
-                        </select>
-                    </div>
-                    <p class="subject-note">
-                        <i class="fas fa-info-circle"></i> Select one subject for prediction analysis
-                    </p>
-                </div>
-            </div>
-           
-            <div class="terminal-text">
-                <div>> SYSTEM: AWAITING PROGRAM SELECTION</div>
-                <div>> ANALYZER: READY</div>
-                <div>> PREDICTION ENGINE: STANDBY</div>
-            </div>
-           
-            <h3>SELECT PREDICTION MODE:</h3>
-            <div class="mode-selection">
-                <div class="mode mode-1" data-mode="just-pass">
-                    <i class="mode-icon fas fa-bolt"></i>
-                    <div class="mode-title">JUST PASS</div>
-                    <p class="mode-desc">MINIMAL EFFORT FOR 40+ MARKS. FOCUS ONLY ON CRITICAL TOPICS.</p>
-                </div>
-               
-                <div class="mode mode-2" data-mode="decent">
-                    <i class="mode-icon fas fa-chart-line"></i>
-                    <div class="mode-title">BE DECENT</div>
-                    <p class="mode-desc">SOLID UNDERSTANDING FOR 60-70 MARKS. BALANCED COVERAGE.</p>
-                </div>
-            </div>
-           
-            <button class="predict-btn" id="predict-btn">
-                <i class="fas fa-brain"></i> INITIATE PREDICTION ANALYSIS
-            </button>
-           
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-           
-            <div class="results-section" id="results-section">
-                <div class="results-header">
-                    <h2 class="results-title">PREDICTION ANALYSIS COMPLETE</h2>
-                    <p>BASED ON SYLLABUS ANALYSIS AND SELECTED MODE</p>
-                </div>
-               
-                <div class="terminal-text">
-                    <div>> ANALYSIS: BBA PROGRAM DECRYPTED - 6 SUBJECTS IDENTIFIED</div>
-                    <div>> PREDICTION: EXAM CONTENT MAPPED WITH HIGH CONFIDENCE</div>
-                    <div>> RECOMMENDATION: FOCUS ON HIGHLIGHTED TOPICS FOR OPTIMAL RESULTS</div>
-                </div>
-               
-                <div class="prediction-cards">
-                    <div class="card high">
-                        <div class="card-header">
-                            <span><i class="fas fa-exclamation-circle"></i> HIGH PROBABILITY</span>
-                            <span class="guarantee-badge">CRITICAL</span>
-                        </div>
-                        <div class="card-body">
-                            <ul class="topic-list" id="high-topics">
-                                <li class="topic-item">MANAGEMENT PRINCIPLES AND THEORIES</li>
-                                <li class="topic-item">FINANCIAL MARKET STRUCTURE</li>
-                                <li class="topic-item">BUSINESS COMMUNICATION STRATEGIES</li>
-                                <li class="topic-item">ORGANIZATIONAL BEHAVIOR CONCEPTS</li>
-                            </ul>
-                        </div>
-                    </div>
-                   
-                    <div class="card medium">
-                        <div class="card-header">
-                            <span><i class="fas fa-info-circle"></i> MEDIUM PROBABILITY</span>
-                            <span class="guarantee-badge">IMPORTANT</span>
-                        </div>
-                        <div class="card-body">
-                            <ul class="topic-list" id="medium-topics">
-                                <li class="topic-item">ETHICAL DECISION MAKING MODELS</li>
-                                <li class="topic-item">IT APPLICATIONS IN BUSINESS</li>
-                                <li class="topic-item">CONSTITUTIONAL FRAMEWORK</li>
-                                <li class="topic-item">FINANCIAL INSTITUTIONS ROLE</li>
-                            </ul>
-                        </div>
-                    </div>
-                   
-                    <div class="card low">
-                        <div class="card-header">
-                            <span><i class="fas fa-low-vision"></i> LOW PROBABILITY</span>
-                            <span class="guarantee-badge">OPTIONAL</span>
-                        </div>
-                        <div class="card-body">
-                            <ul class="topic-list" id="low-topics">
-                                <li class="topic-item">HISTORICAL DEVELOPMENT OF MANAGEMENT</li>
-                                <li class="topic-item">SPECIALIZED FINANCIAL INSTRUMENTS</li>
-                                <li class="topic-item">ADVANCED IT SYSTEMS</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <header>
+      <h1>HACKSY</h1>
+      <p class="tagline">CRACK THE EXAM CODE - PREDICT. STUDY. DOMINATE.</p>
+    </header>
+
+    <div class="main-content">
+      <div class="selection-section">
+        <i class="selection-icon fas fa-graduation-cap"></i>
+        <h3>SELECT YOUR STREAM</h3>
+        <p>CHOOSE YOUR UNIVERSITY AND SUBJECT</p>
+
+        <!-- Locked Defaults -->
+        <div class="form-group">
+          <label><i class="fas fa-university"></i> UNIVERSITY</label>
+          <select id="university-select" class="form-select" disabled>
+            <option value="calcutta" selected>University of Calcutta</option>
+          </select>
         </div>
-       
-        <footer>
-            <p>HACKSY &copy; 2025 | ETHICAL EXAM PREDICTION SYSTEM</p>
-        </footer>
+
+        <div class="form-group">
+          <label><i class="fas fa-graduation-cap"></i> STREAM</label>
+          <select id="stream-select" class="form-select" disabled>
+            <option value="bba" selected>BBA (Bachelor of Business Administration)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-calendar-alt"></i> YEAR</label>
+          <select id="year-select" class="form-select" disabled>
+            <option value="1" selected>1st Year</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="subject-select"><i class="fas fa-book"></i> SELECT SUBJECT</label>
+          <div class="subject-select-wrapper">
+            <select id="subject-select" class="form-select">
+              <option value="">-- SELECT SUBJECT --</option>
+              <option value="pom">Principles of Management & Organizational Behavior</option>
+              <option value="ethics">Business Ethics</option>
+              <option value="finance">Financial Institutions & Markets</option>
+              <option value="communication">Business Communication</option>
+              <option value="it">IT in Business</option>
+              <option value="constitution">Constitutional Values</option>
+            </select>
+          </div>
+          <p class="subject-note">
+            <i class="fas fa-info-circle"></i> Select one subject for prediction analysis
+          </p>
+        </div>
+      </div>
+
+      <!-- Main terminal -->
+      <div class="terminal-text" id="terminal-text">
+        <div>> SYSTEM: AWAITING PROGRAM SELECTION</div>
+        <div>> ANALYZER: READY</div>
+        <div>> PREDICTION ENGINE: STANDBY</div>
+      </div>
+
+      <h3>SELECT PREDICTION MODE:</h3>
+      <div class="mode-selection">
+        <div class="mode mode-1" data-mode="just-pass">
+          <i class="mode-icon fas fa-bolt"></i>
+          <div class="mode-title">JUST PASS</div>
+          <p class="mode-desc">MINIMAL EFFORT FOR 40+ MARKS. FOCUS ONLY ON CRITICAL TOPICS.</p>
+        </div>
+
+        <div class="mode mode-2" data-mode="decent">
+          <i class="mode-icon fas fa-chart-line"></i>
+          <div class="mode-title">BE DECENT</div>
+          <p class="mode-desc">SOLID UNDERSTANDING FOR 60-70 MARKS. BALANCED COVERAGE.</p>
+        </div>
+      </div>
+
+      <button class="predict-btn" id="predict-btn" disabled>
+        <i class="fas fa-brain"></i> INITIATE PREDICTION ANALYSIS
+      </button>
+
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <div class="results-section" id="results-section">
+        <div class="results-header">
+          <h2 class="results-title">PREDICTION ANALYSIS COMPLETE</h2>
+          <p>BASED ON SYLLABUS ANALYSIS AND SELECTED MODE</p>
+        </div>
+
+        <!-- Live log for analysis -->
+        <div class="terminal-text" id="analysis-log"></div>
+
+        <div class="prediction-cards">
+          <div class="card high">
+            <div class="card-header">
+              <span><i class="fas fa-exclamation-circle"></i> HIGH PROBABILITY</span>
+              <span class="guarantee-badge">CRITICAL</span>
+            </div>
+            <div class="card-body">
+              <ul class="topic-list" id="high-topics"></ul>
+            </div>
+          </div>
+
+          <div class="card medium">
+            <div class="card-header">
+              <span><i class="fas fa-info-circle"></i> MEDIUM PROBABILITY</span>
+              <span class="guarantee-badge">IMPORTANT</span>
+            </div>
+            <div class="card-body">
+              <ul class="topic-list" id="medium-topics"></ul>
+            </div>
+          </div>
+
+          <div class="card low">
+            <div class="card-header">
+              <span><i class="fas fa-low-vision"></i> LOW PROBABILITY</span>
+              <span class="guarantee-badge">OPTIONAL</span>
+            </div>
+            <div class="card-body">
+              <ul class="topic-list" id="low-topics"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <footer>
+      <p>HACKSY &copy; 2025 | ETHICAL EXAM PREDICTION SYSTEM</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
