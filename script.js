@@ -1,23 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
+
     // ============================
-    // Disclaimer popup
+    // Disclaimer Modal
     // ============================
     const disclaimerModal = document.getElementById('disclaimer-modal');
     const acceptDisclaimerBtn = document.getElementById('accept-disclaimer');
 
-    // Always show disclaimer every time
+    // Always show disclaimer
     disclaimerModal.style.display = "flex";
 
-    // Hide when accepted (with fade-out)
     acceptDisclaimerBtn.addEventListener('click', () => {
-        disclaimerModal.classList.add('fade-out');
-        setTimeout(() => {
-            disclaimerModal.style.display = "none";
-        }, 400); // match CSS animation duration
+        disclaimerModal.style.display = "none";
     });
 
     // ============================
-    // Main App Logic
+    // Main App Elements
     // ============================
     const universitySelect = document.getElementById('university-select');
     const streamSelect = document.getElementById('stream-select');
@@ -32,29 +29,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let selectedMode = null;
 
-    // Defaults
+    // Default selections
     universitySelect.value = 'calcutta';
     streamSelect.value = 'bba';
     yearSelect.value = '1';
     subjectSelect.value = 'pom';
 
-    // Logging helper
-    function log(message) {
+    // ============================
+    // Logging Helper
+    // ============================
+    function log(message, type = 'info') {
         const div = document.createElement('div');
         div.textContent = `> ${message}`;
+        if(type === 'error') div.style.color = '#e53935';  // red
+        else div.style.color = '#4caf50'; // green
         analysisLog.appendChild(div);
         analysisLog.scrollTop = analysisLog.scrollHeight;
     }
 
-    // Mode selection
+    // ============================
+    // Mode Selection
+    // ============================
     modes.forEach(mode => {
         mode.addEventListener('click', function() {
             modes.forEach(m => m.classList.remove('selected'));
             this.classList.add('selected');
             selectedMode = this.dataset.mode;
 
-            analysisLog.innerHTML = ""; // reset log on new mode
-            log(`SYSTEM: ${universitySelect.options[universitySelect.selectedIndex].text.toUpperCase()} SELECTED`);
+            analysisLog.innerHTML = "";
+            log(`SYSTEM: ${universitySelect.options[universitySelect.selectedIndex].text.toUpperCase()}`);
             log(`STREAM: ${streamSelect.options[streamSelect.selectedIndex].text.toUpperCase()}`);
             log(`YEAR: ${yearSelect.options[yearSelect.selectedIndex].text.toUpperCase()}`);
             log(`SUBJECT: ${subjectSelect.options[subjectSelect.selectedIndex].text.toUpperCase()}`);
@@ -64,10 +67,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Auto-select Be Decent by default
+    // Auto-select "Be Decent" mode by default
     document.querySelector('.mode-2').click();
 
-    // Predict button
+    // ============================
+    // Predict Button
+    // ============================
     predictBtn.addEventListener('click', function() {
         if (!selectedMode) {
             alert("Please select a mode first!");
@@ -75,8 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         progressContainer.style.display = 'block';
+        progressBar.style.width = '0%';
         predictBtn.disabled = true;
         resultsSection.style.display = 'none';
+        analysisLog.innerHTML = "";
 
         let progress = 0;
         const interval = setInterval(() => {
@@ -84,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (progress >= 100) {
                 progress = 100;
                 clearInterval(interval);
+                progressBar.style.width = '100%';
 
                 setTimeout(() => {
                     loadPrediction(selectedMode, subjectSelect.value);
@@ -95,14 +103,15 @@ document.addEventListener('DOMContentLoaded', function() {
             progressBar.style.width = progress + '%';
         }, 200);
 
-        analysisLog.innerHTML = "";
         log(`ANALYZING: ${universitySelect.options[universitySelect.selectedIndex].text.toUpperCase()} ${streamSelect.options[streamSelect.selectedIndex].text.toUpperCase()}`);
         log(`SUBJECT: ${subjectSelect.options[subjectSelect.selectedIndex].text.toUpperCase()}`);
         log(`MODE: ${selectedMode.toUpperCase()}`);
-        log("STATUS: FETCHING TOPICS FROM FILE...");
+        log("STATUS: FETCHING TOPICS...");
     });
 
-    // Load prediction topics
+    // ============================
+    // Load Prediction Topics
+    // ============================
     function loadPrediction(mode, subjectValue) {
         const file = mode === 'just-pass' ? 'pass.txt' : 'decent.txt';
 
@@ -117,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 mediumTopics.innerHTML = '';
                 lowTopics.innerHTML = '';
 
-                // Map subject dropdown values to text file headings
                 const subjectMap = {
                     pom: "Principles of Management & Organizational Behavior",
                     ethics: "Business Ethics",
@@ -129,12 +137,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const subjectName = subjectMap[subjectValue];
 
-                // Extract subject section
                 const regex = new RegExp(`\\d+\\.\\s*${subjectName}[\\s\\S]*?(?=\\n\\d+\\.|$)`, "i");
                 const subjectSection = text.match(regex);
 
                 if (!subjectSection) {
-                    log(`ERROR: SUBJECT "${subjectName}" NOT FOUND IN ${file.toUpperCase()}`);
+                    log(`ERROR: SUBJECT "${subjectName}" NOT FOUND IN ${file.toUpperCase()}`, 'error');
                     return;
                 }
 
@@ -142,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 log(`SUBJECT SECTION FOUND: ${subjectName.toUpperCase()}`);
                 log("STATUS: PARSING TOPICS...");
 
-                // Parse High / Moderate / Low
                 const sectionText = subjectSection[0];
                 const highMatch = sectionText.match(/High Probability([\s\S]*?)(Moderate Probability|Low Probability|$)/i);
                 const moderateMatch = sectionText.match(/Moderate Probability([\s\S]*?)(Low Probability|$)/i);
@@ -155,11 +161,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 log("STATUS: TOPICS LOADED SUCCESSFULLY ✅");
             })
             .catch(err => {
-                log(`ERROR LOADING FILE: ${err.message}`);
+                log(`ERROR LOADING FILE: ${err.message}`, 'error');
             });
     }
 
-    // Helper: fill topics into list
+    // ============================
+    // Fill List Helper
+    // ============================
     function fillList(listElement, textBlock) {
         textBlock.trim().split('\n').forEach(line => {
             if (line.trim()) {
@@ -170,4 +178,5 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
 });
