@@ -8,23 +8,24 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Disclaimer Popup -->
+
+  <!-- Disclaimer Modal -->
   <div id="disclaimer-modal" class="modal">
     <div class="modal-content">
       <h2>DISCLAIMER</h2>
       <p>
-        This website is <strong>NOT</strong> a cheat, leak, or magic tool.<br><br>
-        It only predicts exam topics based on syllabus patterns and past trends.<br><br>
+        This website is <strong>NOT</strong> a cheat or magic tool.<br><br>
+        It predicts exam topics based on syllabus patterns and past trends.<br><br>
         ❌ If you don't study, this cannot make you pass.<br>
         ✅ Use this as a tool for smart study, not a magic hack.<br><br>
         We are <strong>NOT LIABLE</strong> if you depend only on this and fail. 
-        Predictions are <strong>not 100% accurate</strong> because nothing can predict exams perfectly.
+        Predictions are <strong>not 100% accurate</strong>.
       </p>
       <button id="accept-disclaimer">I Understand</button>
     </div>
   </div>
 
-  <!-- Main container -->
+  <!-- Main Container -->
   <div class="container">
     <header>
       <h1>HACKSY</h1>
@@ -32,12 +33,13 @@
     </header>
 
     <div class="main-content">
+
+      <!-- Selection Section -->
       <div class="selection-section">
         <i class="selection-icon fas fa-graduation-cap"></i>
         <h3>SELECT YOUR STREAM</h3>
-        <p>CHOOSE YOUR UNIVERSITY AND SUBJECT</p>
+        <p>CHOOSE UNIVERSITY AND SUBJECT</p>
 
-        <!-- Locked Defaults -->
         <div class="form-group">
           <label><i class="fas fa-university"></i> UNIVERSITY</label>
           <select id="university-select" class="form-select" disabled>
@@ -78,13 +80,14 @@
         </div>
       </div>
 
-      <!-- Main terminal -->
+      <!-- Terminal Logs -->
       <div class="terminal-text" id="terminal-text">
         <div>> SYSTEM: AWAITING PROGRAM SELECTION</div>
         <div>> ANALYZER: READY</div>
         <div>> PREDICTION ENGINE: STANDBY</div>
       </div>
 
+      <!-- Mode Selection -->
       <h3>SELECT PREDICTION MODE:</h3>
       <div class="mode-selection">
         <div class="mode mode-1" data-mode="just-pass">
@@ -104,17 +107,18 @@
         <i class="fas fa-brain"></i> INITIATE PREDICTION ANALYSIS
       </button>
 
+      <!-- Progress Bar -->
       <div class="progress-container">
         <div class="progress-bar" id="progress-bar"></div>
       </div>
 
+      <!-- Results Section -->
       <div class="results-section" id="results-section">
         <div class="results-header">
           <h2 class="results-title">PREDICTION ANALYSIS COMPLETE</h2>
           <p>BASED ON SYLLABUS ANALYSIS AND SELECTED MODE</p>
         </div>
 
-        <!-- Live log for analysis -->
         <div class="terminal-text" id="analysis-log"></div>
 
         <div class="prediction-cards">
@@ -149,6 +153,7 @@
           </div>
         </div>
       </div>
+
     </div>
 
     <footer>
