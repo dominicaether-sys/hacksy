@@ -4,28 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hacksy - Exam Predictor Pro</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-48VM0KREFH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-48VM0KREFH');
+  </script>
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- Disclaimer Modal -->
+  <!-- Disclaimer Popup -->
   <div id="disclaimer-modal" class="modal">
     <div class="modal-content">
       <h2>DISCLAIMER</h2>
       <p>
-        This website is <strong>NOT</strong> a cheat or magic tool.<br><br>
-        It predicts exam topics based on syllabus patterns and past trends.<br><br>
+        This website is <strong>NOT</strong> a cheat, leak, or magic tool.<br><br>
+        It only predicts exam topics based on syllabus patterns and past trends.<br><br>
         ❌ If you don't study, this cannot make you pass.<br>
         ✅ Use this as a tool for smart study, not a magic hack.<br><br>
         We are <strong>NOT LIABLE</strong> if you depend only on this and fail. 
-        Predictions are <strong>not 100% accurate</strong>.
+        Predictions are <strong>not 100% accurate</strong> because nothing can predict exams perfectly.
       </p>
       <button id="accept-disclaimer">I Understand</button>
     </div>
   </div>
 
-  <!-- Main Container -->
+  <!-- Main container -->
   <div class="container">
     <header>
       <h1>HACKSY</h1>
@@ -33,13 +41,12 @@
     </header>
 
     <div class="main-content">
-
-      <!-- Selection Section -->
       <div class="selection-section">
         <i class="selection-icon fas fa-graduation-cap"></i>
         <h3>SELECT YOUR STREAM</h3>
-        <p>CHOOSE UNIVERSITY AND SUBJECT</p>
+        <p>CHOOSE YOUR UNIVERSITY AND SUBJECT</p>
 
+        <!-- Locked Defaults -->
         <div class="form-group">
           <label><i class="fas fa-university"></i> UNIVERSITY</label>
           <select id="university-select" class="form-select" disabled>
@@ -80,17 +87,16 @@
         </div>
       </div>
 
-      <!-- Terminal Logs -->
+      <!-- Main terminal -->
       <div class="terminal-text" id="terminal-text">
         <div>> SYSTEM: AWAITING PROGRAM SELECTION</div>
         <div>> ANALYZER: READY</div>
         <div>> PREDICTION ENGINE: STANDBY</div>
       </div>
 
-      <!-- Mode Selection -->
       <h3>SELECT PREDICTION MODE:</h3>
       <div class="mode-selection">
-        <div class="mode mode-1" data-mode="just-pass">
+        <div class="mode mode-1 selected" data-mode="just-pass">
           <i class="mode-icon fas fa-bolt"></i>
           <div class="mode-title">JUST PASS</div>
           <p class="mode-desc">MINIMAL EFFORT FOR 40+ MARKS. FOCUS ONLY ON CRITICAL TOPICS.</p>
@@ -103,22 +109,21 @@
         </div>
       </div>
 
-      <button class="predict-btn" id="predict-btn" disabled>
+      <button class="predict-btn" id="predict-btn">
         <i class="fas fa-brain"></i> INITIATE PREDICTION ANALYSIS
       </button>
 
-      <!-- Progress Bar -->
       <div class="progress-container">
         <div class="progress-bar" id="progress-bar"></div>
       </div>
 
-      <!-- Results Section -->
       <div class="results-section" id="results-section">
         <div class="results-header">
           <h2 class="results-title">PREDICTION ANALYSIS COMPLETE</h2>
           <p>BASED ON SYLLABUS ANALYSIS AND SELECTED MODE</p>
         </div>
 
+        <!-- Live log for analysis -->
         <div class="terminal-text" id="analysis-log"></div>
 
         <div class="prediction-cards">
@@ -153,7 +158,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <footer>
