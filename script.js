@@ -48,6 +48,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================
+    // Topic Rewording Function
+    // ============================
+    function rewordTopic(topic) {
+        const replacements = [
+            [/\bprinciples\b/gi, ["basics", "foundations"]],
+            [/\bmanagement\b/gi, ["admin", "handling"]],
+            [/\bbehavior\b/gi, ["conduct", "actions"]],
+            [/\bfinance\b/gi, ["financial matters", "funds"]],
+            [/\bcommunication\b/gi, ["interaction", "exchange"]],
+            [/\bethics\b/gi, ["moral principles", "values"]],
+            [/\bit\b/gi, ["information technology", "IT systems"]],
+            [/\bconstitution\b/gi, ["legal framework", "charter"]],
+            // Add more synonyms as needed
+        ];
+
+        let newTopic = topic;
+
+        replacements.forEach(([regex, synonyms]) => {
+            if (regex.test(newTopic)) {
+                const choice = synonyms[Math.floor(Math.random() * synonyms.length)];
+                newTopic = newTopic.replace(regex, choice);
+            }
+        });
+
+        return newTopic;
+    }
+
+    // ============================
+    // Fill List Helper (Dynamic)
+    // ============================
+    function fillList(listElement, textBlock) {
+        listElement.innerHTML = '';
+        textBlock.trim().split('\n').forEach(line => {
+            if(line.trim()) {
+                const li = document.createElement('li');
+                li.className = 'topic-item';
+                li.textContent = rewordTopic(line.replace(/^- /, '').trim());
+                listElement.appendChild(li);
+            }
+        });
+    }
+
+    // ============================
     // Mode Selection
     // ============================
     modes.forEach(mode => {
@@ -163,20 +206,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(err => {
                 log(`ERROR LOADING FILE: ${err.message}`, 'error');
             });
-    }
-
-    // ============================
-    // Fill List Helper
-    // ============================
-    function fillList(listElement, textBlock) {
-        textBlock.trim().split('\n').forEach(line => {
-            if (line.trim()) {
-                const li = document.createElement('li');
-                li.className = 'topic-item';
-                li.textContent = line.replace(/^- /, '').trim();
-                listElement.appendChild(li);
-            }
-        });
     }
 
 });
