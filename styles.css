@@ -130,6 +130,12 @@ header .tagline {
 .mode.selected {
     border: 2px solid #4caf50;
     box-shadow: 0 6px 20px rgba(76, 175, 80, 0.7);
+    animation: glow 1s ease infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 5px #4caf50; }
+    to { box-shadow: 0 0 20px #4caf50; }
 }
 
 .mode-icon {
@@ -246,13 +252,38 @@ header .tagline {
     list-style: none;
 }
 
+/* ===================== */
+/* Topic Items & Study   */
+/* ===================== */
 .topic-item {
     padding: 8px 0;
     border-bottom: 1px solid #444;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .topic-item:last-child {
     border-bottom: none;
+}
+
+.topic-item:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.topic-item.active .notes,
+.topic-item.active .questions {
+    display: block;
+}
+
+.notes, .questions {
+    display: none;
+    margin-left: 15px;
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
+
+.notes li, .questions li {
+    margin-bottom: 3px;
 }
 
 /* ===================== */
@@ -289,6 +320,28 @@ header .tagline {
     margin: 15px 0;
     color: #e0e0e0;
     overflow-x: auto;
+}
+
+/* ===================== */
+/* Study Plan Section    */
+/* ===================== */
+.study-plan {
+    background-color: #2a2a2a;
+    border: 1px solid #4caf50;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.study-plan h3 {
+    color: #4caf50;
+    margin-bottom: 10px;
+}
+
+.study-plan p {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    margin-bottom: 15px;
 }
 
 /* ===================== */
