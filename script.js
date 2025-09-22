@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const disclaimerModal = document.getElementById('disclaimer-modal');
     const acceptDisclaimerBtn = document.getElementById('accept-disclaimer');
 
-    // Always show disclaimer
     disclaimerModal.style.display = "flex";
 
     acceptDisclaimerBtn.addEventListener('click', () => {
@@ -26,10 +25,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressBar = document.getElementById('progress-bar');
     const resultsSection = document.getElementById('results-section');
     const analysisLog = document.getElementById('analysis-log');
+    const studyPlanContainer = document.querySelector('.study-plan');
 
     let selectedMode = null;
 
-    // Default selections
     universitySelect.value = 'calcutta';
     streamSelect.value = 'bba';
     yearSelect.value = '1';
@@ -41,8 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function log(message, type = 'info') {
         const div = document.createElement('div');
         div.textContent = `> ${message}`;
-        if(type === 'error') div.style.color = '#e53935';  // red
-        else div.style.color = '#4caf50'; // green
+        if(type === 'error') div.style.color = '#e53935';
+        else div.style.color = '#4caf50';
         analysisLog.appendChild(div);
         analysisLog.scrollTop = analysisLog.scrollHeight;
     }
@@ -67,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Auto-select "Be Decent" mode by default
     document.querySelector('.mode-2').click();
 
     // ============================
@@ -83,6 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
         progressBar.style.width = '0%';
         predictBtn.disabled = true;
         resultsSection.style.display = 'none';
+        studyPlanContainer.innerHTML = `<h3>📚 Study Plan (Click a topic to see Notes & Questions)</h3>
+                                        <p>Topics are ordered High → Medium → Low probability</p>`;
         analysisLog.innerHTML = "";
 
         let progress = 0;
@@ -154,9 +154,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const moderateMatch = sectionText.match(/Moderate Probability([\s\S]*?)(Low Probability|$)/i);
                 const lowMatch = sectionText.match(/Low Probability([\s\S]*)/i);
 
-                if (highMatch) fillList(highTopics, highMatch[1]);
-                if (moderateMatch) fillList(mediumTopics, moderateMatch[1]);
-                if (lowMatch) fillList(lowTopics, lowMatch[1]);
+                if (highMatch) fillList(highTopics, highMatch[1], 'High');
+                if (moderateMatch) fillList(mediumTopics, moderateMatch[1], 'Medium');
+                if (lowMatch) fillList(lowTopics, lowMatch[1], 'Low');
 
                 log("STATUS: TOPICS LOADED SUCCESSFULLY ✅");
             })
@@ -168,13 +168,39 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================
     // Fill List Helper
     // ============================
-    function fillList(listElement, textBlock) {
+    function fillList(listElement, textBlock, level) {
         textBlock.trim().split('\n').forEach(line => {
             if (line.trim()) {
                 const li = document.createElement('li');
                 li.className = 'topic-item';
                 li.textContent = line.replace(/^- /, '').trim();
+
+                // Create notes and questions dynamically
+                const notes = document.createElement('ul');
+                notes.className = 'notes';
+                notes.innerHTML = `<li>Note 1 about ${li.textContent}</li>
+                                   <li>Note 2 about ${li.textContent}</li>`;
+
+                const questions = document.createElement('ul');
+                questions.className = 'questions';
+                questions.innerHTML = `<li>Q1 about ${li.textContent}?</li>
+                                       <li>Q2 about ${li.textContent}?</li>`;
+
+                li.appendChild(notes);
+                li.appendChild(questions);
+
+                li.addEventListener('click', () => {
+                    li.classList.toggle('active');
+                });
+
                 listElement.appendChild(li);
+
+                // Add to Study Plan section
+                const studyPlanList = document.createElement('ul');
+                studyPlanList.className = 'topic-list';
+                const planLi = li.cloneNode(true);
+                planLi.addEventListener('click', () => planLi.classList.toggle('active'));
+                studyPlanContainer.appendChild(planLi);
             }
         });
     }
