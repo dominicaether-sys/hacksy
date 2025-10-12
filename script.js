@@ -1,208 +1,121 @@
-document.addEventListener('DOMContentLoaded', function() {
+// script.js
 
-    // ============================
-    // Disclaimer Modal
-    // ============================
-    const disclaimerModal = document.getElementById('disclaimer-modal');
-    const acceptDisclaimerBtn = document.getElementById('accept-disclaimer');
+document.addEventListener("DOMContentLoaded", () => {
+  const disclaimerModal = document.getElementById("disclaimer-modal");
+  const acceptBtn = document.getElementById("accept-disclaimer");
 
-    disclaimerModal.style.display = "flex";
+  acceptBtn.addEventListener("click", () => {
+    disclaimerModal.style.display = "none";
+  });
 
-    acceptDisclaimerBtn.addEventListener('click', () => {
-        disclaimerModal.style.display = "none";
+  const subjectSelect = document.getElementById("subject-select");
+  const predictBtn = document.getElementById("predict-btn");
+  const progressBar = document.getElementById("progress-bar");
+  const analysisLog = document.getElementById("analysis-log");
+  const resultsSection = document.getElementById("results-section");
+
+  const highTopics = document.getElementById("high-topics");
+  const mediumTopics = document.getElementById("medium-topics");
+  const lowTopics = document.getElementById("low-topics");
+
+  let selectedMode = "just-pass";
+
+  // Mode selection
+  document.querySelectorAll(".mode").forEach(mode => {
+    mode.addEventListener("click", () => {
+      document.querySelectorAll(".mode").forEach(m => m.classList.remove("selected"));
+      mode.classList.add("selected");
+      selectedMode = mode.dataset.mode;
     });
+  });
 
-    // ============================
-    // Main App Elements
-    // ============================
-    const universitySelect = document.getElementById('university-select');
-    const streamSelect = document.getElementById('stream-select');
-    const yearSelect = document.getElementById('year-select');
-    const subjectSelect = document.getElementById('subject-select');
-    const modes = document.querySelectorAll('.mode');
-    const predictBtn = document.getElementById('predict-btn');
-    const progressContainer = document.querySelector('.progress-container');
-    const progressBar = document.getElementById('progress-bar');
-    const resultsSection = document.getElementById('results-section');
-    const analysisLog = document.getElementById('analysis-log');
-    const studyPlanContainer = document.querySelector('.study-plan');
+  // Dummy topics for demonstration
+  const topicsData = {
+    pom: {
+      high: ["Organizational Behavior", "Management Principles"],
+      medium: ["Motivation & Leadership", "Decision Making"],
+      low: ["History of Management"]
+    },
+    ethics: {
+      high: ["Corporate Governance", "Ethical Theories"],
+      medium: ["CSR & Sustainability"],
+      low: ["Business Law Basics"]
+    },
+    finance: {
+      high: ["Financial Markets", "Banking Systems"],
+      medium: ["Stock Valuation", "Mutual Funds"],
+      low: ["Insurance Basics"]
+    },
+    communication: {
+      high: ["Business Writing", "Presentation Skills"],
+      medium: ["Email Etiquette", "Report Writing"],
+      low: ["Networking Skills"]
+    },
+    it: {
+      high: ["MIS Basics", "IT Trends"],
+      medium: ["Database Management"],
+      low: ["Hardware Overview"]
+    },
+    constitution: {
+      high: ["Fundamental Rights", "Directive Principles"],
+      medium: ["Parliament & Judiciary"],
+      low: ["State Govt Structure"]
+    }
+  };
 
-    let selectedMode = null;
+  function simulateProgress(callback) {
+    let progress = 0;
+    progressBar.style.width = "0%";
+    const interval = setInterval(() => {
+      progress += Math.random() * 10;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        callback();
+      }
+      progressBar.style.width = progress + "%";
+    }, 300);
+  }
 
-    universitySelect.value = 'calcutta';
-    streamSelect.value = 'bba';
-    yearSelect.value = '1';
-    subjectSelect.value = 'pom';
+  predictBtn.addEventListener("click", () => {
+    const subject = subjectSelect.value;
+    if (!subject) {
+      alert("Please select a subject first.");
+      return;
+    }
 
-    // ============================
-    // Logging Helper
-    // ============================
-    function log(message, type = 'info') {
-        const div = document.createElement('div');
-        div.textContent = `> ${message}`;
-        if(type === 'error') div.style.color = '#e53935';
-        else div.style.color = '#4caf50';
-        analysisLog.appendChild(div);
+    resultsSection.style.display = "block";
+    analysisLog.innerHTML = "";
+
+    // Simulate analysis logs
+    const logs = [
+      `> ANALYZING SUBJECT: ${subject.toUpperCase()}`,
+      `> MODE: ${selectedMode.toUpperCase()}`,
+      "> EXTRACTING SYLLABUS DATA...",
+      "> IDENTIFYING HIGH PROBABILITY TOPICS...",
+      "> COMPILING STUDY PLAN..."
+    ];
+
+    let index = 0;
+    const logInterval = setInterval(() => {
+      if (index < logs.length) {
+        analysisLog.innerHTML += `<div>${logs[index]}</div>`;
         analysisLog.scrollTop = analysisLog.scrollHeight;
-    }
+        index++;
+      } else {
+        clearInterval(logInterval);
+      }
+    }, 500);
 
-    // ============================
-    // Mode Selection
-    // ============================
-    modes.forEach(mode => {
-        mode.addEventListener('click', function() {
-            modes.forEach(m => m.classList.remove('selected'));
-            this.classList.add('selected');
-            selectedMode = this.dataset.mode;
+    // Simulate progress bar
+    simulateProgress(() => {
+      // Populate topics
+      const data = topicsData[subject];
+      highTopics.innerHTML = data.high.map(t => `<li>${t}</li>`).join("");
+      mediumTopics.innerHTML = data.medium.map(t => `<li>${t}</li>`).join("");
+      lowTopics.innerHTML = data.low.map(t => `<li>${t}</li>`).join("");
 
-            analysisLog.innerHTML = "";
-            log(`SYSTEM: ${universitySelect.options[universitySelect.selectedIndex].text.toUpperCase()}`);
-            log(`STREAM: ${streamSelect.options[streamSelect.selectedIndex].text.toUpperCase()}`);
-            log(`YEAR: ${yearSelect.options[yearSelect.selectedIndex].text.toUpperCase()}`);
-            log(`SUBJECT: ${subjectSelect.options[subjectSelect.selectedIndex].text.toUpperCase()}`);
-            log(`MODE: ${this.querySelector('.mode-title').textContent.toUpperCase()} SELECTED`);
-
-            predictBtn.disabled = false;
-        });
+      analysisLog.innerHTML += "<div>> PREDICTION COMPLETE ✅</div>";
     });
-
-    document.querySelector('.mode-2').click();
-
-    // ============================
-    // Predict Button
-    // ============================
-    predictBtn.addEventListener('click', function() {
-        if (!selectedMode) {
-            alert("Please select a mode first!");
-            return;
-        }
-
-        progressContainer.style.display = 'block';
-        progressBar.style.width = '0%';
-        predictBtn.disabled = true;
-        resultsSection.style.display = 'none';
-        studyPlanContainer.innerHTML = `<h3>📚 Study Plan (Click a topic to see Notes & Questions)</h3>
-                                        <p>Topics are ordered High → Medium → Low probability</p>`;
-        analysisLog.innerHTML = "";
-
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 12;
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(interval);
-                progressBar.style.width = '100%';
-
-                setTimeout(() => {
-                    loadPrediction(selectedMode, subjectSelect.value);
-                    resultsSection.style.display = 'block';
-                    resultsSection.scrollIntoView({ behavior: 'smooth' });
-                    predictBtn.disabled = false;
-                }, 500);
-            }
-            progressBar.style.width = progress + '%';
-        }, 200);
-
-        log(`ANALYZING: ${universitySelect.options[universitySelect.selectedIndex].text.toUpperCase()} ${streamSelect.options[streamSelect.selectedIndex].text.toUpperCase()}`);
-        log(`SUBJECT: ${subjectSelect.options[subjectSelect.selectedIndex].text.toUpperCase()}`);
-        log(`MODE: ${selectedMode.toUpperCase()}`);
-        log("STATUS: FETCHING TOPICS...");
-    });
-
-    // ============================
-    // Load Prediction Topics
-    // ============================
-    function loadPrediction(mode, subjectValue) {
-        const file = mode === 'just-pass' ? 'pass.txt' : 'decent.txt';
-
-        fetch(file)
-            .then(response => response.text())
-            .then(text => {
-                const highTopics = document.getElementById('high-topics');
-                const mediumTopics = document.getElementById('medium-topics');
-                const lowTopics = document.getElementById('low-topics');
-
-                highTopics.innerHTML = '';
-                mediumTopics.innerHTML = '';
-                lowTopics.innerHTML = '';
-
-                const subjectMap = {
-                    pom: "Principles of Management & Organizational Behavior",
-                    ethics: "Business Ethics",
-                    finance: "Financial Institutions & Markets",
-                    communication: "Business Communication",
-                    it: "IT in Business",
-                    constitution: "Constitutional Values"
-                };
-
-                const subjectName = subjectMap[subjectValue];
-
-                const regex = new RegExp(`\\d+\\.\\s*${subjectName}[\\s\\S]*?(?=\\n\\d+\\.|$)`, "i");
-                const subjectSection = text.match(regex);
-
-                if (!subjectSection) {
-                    log(`ERROR: SUBJECT "${subjectName}" NOT FOUND IN ${file.toUpperCase()}`, 'error');
-                    return;
-                }
-
-                log(`FILE LOADED: ${file.toUpperCase()}`);
-                log(`SUBJECT SECTION FOUND: ${subjectName.toUpperCase()}`);
-                log("STATUS: PARSING TOPICS...");
-
-                const sectionText = subjectSection[0];
-                const highMatch = sectionText.match(/High Probability([\s\S]*?)(Moderate Probability|Low Probability|$)/i);
-                const moderateMatch = sectionText.match(/Moderate Probability([\s\S]*?)(Low Probability|$)/i);
-                const lowMatch = sectionText.match(/Low Probability([\s\S]*)/i);
-
-                if (highMatch) fillList(highTopics, highMatch[1], 'High');
-                if (moderateMatch) fillList(mediumTopics, moderateMatch[1], 'Medium');
-                if (lowMatch) fillList(lowTopics, lowMatch[1], 'Low');
-
-                log("STATUS: TOPICS LOADED SUCCESSFULLY ✅");
-            })
-            .catch(err => {
-                log(`ERROR LOADING FILE: ${err.message}`, 'error');
-            });
-    }
-
-    // ============================
-    // Fill List Helper
-    // ============================
-    function fillList(listElement, textBlock, level) {
-        textBlock.trim().split('\n').forEach(line => {
-            if (line.trim()) {
-                const li = document.createElement('li');
-                li.className = 'topic-item';
-                li.textContent = line.replace(/^- /, '').trim();
-
-                // Create notes and questions dynamically
-                const notes = document.createElement('ul');
-                notes.className = 'notes';
-                notes.innerHTML = `<li>Note 1 about ${li.textContent}</li>
-                                   <li>Note 2 about ${li.textContent}</li>`;
-
-                const questions = document.createElement('ul');
-                questions.className = 'questions';
-                questions.innerHTML = `<li>Q1 about ${li.textContent}?</li>
-                                       <li>Q2 about ${li.textContent}?</li>`;
-
-                li.appendChild(notes);
-                li.appendChild(questions);
-
-                li.addEventListener('click', () => {
-                    li.classList.toggle('active');
-                });
-
-                listElement.appendChild(li);
-
-                // Add to Study Plan section
-                const studyPlanList = document.createElement('ul');
-                studyPlanList.className = 'topic-list';
-                const planLi = li.cloneNode(true);
-                planLi.addEventListener('click', () => planLi.classList.toggle('active'));
-                studyPlanContainer.appendChild(planLi);
-            }
-        });
-    }
-
+  });
 });
